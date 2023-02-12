@@ -1,0 +1,45 @@
+﻿@page
+@model BikeToWork.Pages.BikeRides.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>BikeRide</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="BikeRide.id" />
+            <div class="form-group">
+                <label asp-for="BikeRide.date" class="control-label"></label>
+                <input asp-for="BikeRide.date" class="form-control" />
+                <span asp-validation-for="BikeRide.date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BikeRide.participantId" class="control-label"></label>
+                <input asp-for="BikeRide.participantId" class="form-control" />
+                <span asp-validation-for="BikeRide.participantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BikeRide.Distance" class="control-label"></label>
+                <input asp-for="BikeRide.Distance" class="form-control" />
+                <span asp-validation-for="BikeRide.Distance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

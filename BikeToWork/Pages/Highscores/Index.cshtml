@@ -1,0 +1,71 @@
+﻿@page
+
+@model BikeToWork.Pages.Highscores.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center" >
+    <img src="~/images/Podium.jpg" style="max-height: 250px; max-width: 100%"  />
+</div>
+<div class="text-center" style="margin-bottom: 5%">
+    <h1>Highcores of <strong>Bike To Work</strong></h1>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ranking
+            </th>
+            <th>
+                Name of participant
+            </th>
+            <th>
+                Bikeclass
+            </th>
+            <th>
+                Total distance of Bike rides
+            </th>
+            <th>
+                Total number of Bike rides
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 1; i < 4; i++)
+        {
+            <tr style="vertical-align:middle">
+                <td>
+                    <img style="height:100px" src=@($"images/{i}stPlace.jpg")>
+                </td>
+                <td>
+                    @("First name + Last name (concat string)".ToUpper())
+                </td>
+                <td>
+                    Enum bikeclass + image (custom taghelper)
+                </td>
+                <td>
+                    hent alle bike rides _context.Bikerides. Loop på id og add to int.
+                </td>
+                <td>
+                    hent alle bike rides _context.Bikerides. Loop på id og i++ to int.
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@*<div class="text-center">
+    <label asp.for="Report.CompanyId">Filter Company by ID</label>
+
+    <form asp-page="./Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by ID:
+                <input type="number" name="SearchID" value="@Model.currentFilter" />
+                <input type="submit" value="Search" class="btn btn-primary" /> |
+                <a asp-page="./Index">Back to full List</a>
+            </p>
+        </div>
+    </form>
+</div>*@
