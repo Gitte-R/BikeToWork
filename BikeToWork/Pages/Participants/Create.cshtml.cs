@@ -30,7 +30,7 @@ namespace BikeToWork.Pages.Participant
         }
 
         [BindProperty]
-        public Data.Models.Participant Participant { get; set; }
+        public Data.Models.Participant participant { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -43,7 +43,7 @@ namespace BikeToWork.Pages.Participant
                 return Page();
             }
 
-            _context.Participants.Add(Participant);
+            _context.Participants.Add(participant);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

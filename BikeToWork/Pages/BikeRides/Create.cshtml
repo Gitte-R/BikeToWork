@@ -14,19 +14,24 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="BikeRide.date" class="control-label"></label>
-                <input asp-for="BikeRide.date" class="form-control" />
-                <span asp-validation-for="BikeRide.date" class="text-danger"></span>
+                <label asp-for="bikeRide.date" class="control-label"></label>
+                <input asp-for="bikeRide.date" class="form-control" />
+                <span asp-validation-for="bikeRide.date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BikeRide.participantId" class="control-label"></label>
-                <input asp-for="BikeRide.participantId" class="form-control" />
-                <span asp-validation-for="BikeRide.participantId" class="text-danger"></span>
+                <label asp-for="bikeRide.participantId" class="control-label">Name of participant</label>
+                <select asp-for="bikeRide.participantId" class="form-control">
+                    <option>---Select registered participant---</option>
+                    @foreach (var person in Model.listOfParticipants)
+                    {
+                        <option value="@person.id">@(person.firstName + " " + person.lastName)</option>
+                    }
+                </select>
             </div>
             <div class="form-group">
-                <label asp-for="BikeRide.Distance" class="control-label"></label>
-                <input asp-for="BikeRide.Distance" class="form-control" />
-                <span asp-validation-for="BikeRide.Distance" class="text-danger"></span>
+                <label asp-for="bikeRide.Distance" class="control-label"></label>
+                <input asp-for="bikeRide.Distance" class="form-control" />
+                <span asp-validation-for="bikeRide.Distance" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

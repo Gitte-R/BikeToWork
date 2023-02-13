@@ -19,27 +19,35 @@ namespace BikeToWork.Pages.BikeRides
             _context = context;
         }
 
+        public IList<Data.Models.Participant> listOfParticipants { get; set; }
+      
+
         public IActionResult OnGet()
         {
+            listOfParticipants = _context.Participants.ToList();
             return Page();
         }
 
+
         [BindProperty]
-        public BikeRide BikeRide { get; set; }
-        
+        public BikeRide bikeRide { get; set; }
+
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-          if (!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.BikeRides.Add(BikeRide);
+            _context.BikeRides.Add(bikeRide);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
     }
 }
+
+
+//Når cyeklturen er større end 255 så fejler programmet. Lave en validering i formen så den allerede der sender en besked til brugeren om at km ikke kan være større end 255 km.
