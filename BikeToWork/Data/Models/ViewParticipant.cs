@@ -6,10 +6,10 @@ namespace BikeToWork.Data.Models
 {
     public class ViewParticipant : Participant
     {
-        public IList<BikeRide>? allBikeRides { get; set; }
         [Display(Name = "Number of Bike Rides")]
-        public int? numberOfBikeRides { get; set; }
+        public int numberOfBikeRides { get; set; }
         [Display(Name = "Total distance")]
         public int totalDistance { get; set; }
+        public decimal averageDistance { get; set; }
     }
 }

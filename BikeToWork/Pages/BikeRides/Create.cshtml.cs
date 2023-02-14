@@ -50,4 +50,6 @@ namespace BikeToWork.Pages.BikeRides
 }
 
 
-//Når cyeklturen er større end 255 så fejler programmet. Lave en validering i formen så den allerede der sender en besked til brugeren om at km ikke kan være større end 255 km.
+//Når cyeklturen er større end 255 så fejler programmet.
+//Lave en validering i formen så den allerede der sender en besked til brugeren om at km ikke kan være større end 255 km.
+// brug asp-validation til dette.

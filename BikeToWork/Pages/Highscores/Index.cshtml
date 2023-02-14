@@ -6,13 +6,13 @@
 }
 
 <div class="text-center" >
-    <img src="~/images/Podium.jpg" style="max-height: 250px; max-width: 100%"  />
+    <img src="~/images/Podium.jpg" style="max-height: 200px; max-width: 100%"  />
 </div>
 <div class="text-center">
-    <h1>Highcores of <strong >Bike To Work</strong></h1>
-    <form asp-page="./Index" method="get">
+    <h3>Highcores of <strong >Bike To Work</strong></h3>
+    <form method="get">
         <div class="form-actions no-color" style="max-width: 15%; display: inline-block;">
-            <select onchange="this.form.submit()" asp-for="participant.bikeClass" name="SearchID" class="form-control" value="@Model.currentFilter">
+            <select onchange="this.form.submit()" asp-for="participant.bikeClass" name="filter" class="form-control">
                 <option>---Filter by Bike Class---</option>
                 @foreach (var bikeClass in Model.listOfBikeClasses)
                 {
@@ -33,10 +33,19 @@
                 Name of participant
             </th>
             <th>
-                @Html.DisplayNameFor(modelItem => Model.listOfViewParticipant[0].totalDistance)
+                <a asp-page="./Index" asp-route-sortOrder="totalDistance">
+                    @Html.DisplayNameFor(modelItem => Model.listOfViewParticipant[0].totalDistance)
+                </a>
             </th>
             <th>
+                <a asp-page="./Index" asp-route-sortOrder="numberOfBikeRides">
                 @Html.DisplayNameFor(modelItem => Model.listOfViewParticipant[0].numberOfBikeRides)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="averageDistance">
+                @Html.DisplayNameFor(modelItem => Model.listOfViewParticipant[0].averageDistance)
+                </a>
             </th>
             <th>
                 <div>
@@ -49,38 +58,34 @@
     <tbody>
         @for (int i = 0; i < Model.listOfViewParticipant.Count(); i++)
         {
-                <tr style="vertical-align:middle">
-                    <td>
-                        @if (i < 3)
-                    {
-                        <img style="height:100px" src=@($"images/{i+1}stPlace.jpg")>
-                    }
-                    </td>
-                    <td>
-                        @String.Concat(Model.listOfViewParticipant[i].firstName, " ", Model.listOfViewParticipant[i].lastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].totalDistance)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].numberOfBikeRides)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].bikeClass)
-                    </td>
-                </tr>
+            <tr style="vertical-align:middle">
+                <td>
+                @if (i < 3)
+                {
+                    <img style="height:50px" src=@($"images/{i+1}Place.jpg")>
+                }
+                else
+                {
+                    <img style="height:50px" src=@($"images/NoMedal.jpg")>
+                }
+                </td>
+                <td>
+                @String.Concat(Model.listOfViewParticipant[i].firstName, " ", Model.listOfViewParticipant[i].lastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].totalDistance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].numberOfBikeRides)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].averageDistance)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].bikeClass)
+                </td>
+            </tr>
         }
     </tbody>
 </table>
 
-<a asp-page="./Index">Back to full List</a>
-
-
-@*
-have en gennemsnits distance?
-Kan man have alle viewparticipants men kun medalje på første 3? 
- Så kan man se hvem er runner op og hvor tæt på.
- redirekte til Index?
- custom tag helper med billeder af bike class. Måske også på andre sider som edit/create.
- Sætte et tomt billede hvis i > 3. samme størrelse billede som de andre.
- *@

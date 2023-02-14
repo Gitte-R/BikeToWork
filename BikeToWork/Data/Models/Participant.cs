@@ -14,7 +14,7 @@ namespace BikeToWork.Data.Models
         public string? team { get; set; }
         [Display(Name = "Type of Bike")]
         public BikeClassEnum bikeClass { get; set; }
-        public IList<BikeRide>? listOfBikeRides { get; set; }
+        public IList<BikeRide>? allBikeRides { get; set; }
     }
 }
 
