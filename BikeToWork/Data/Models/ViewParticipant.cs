@@ -8,8 +8,9 @@ namespace BikeToWork.Data.Models
     {
         [Display(Name = "Number of Bike Rides")]
         public int numberOfBikeRides { get; set; }
-        [Display(Name = "Total distance")]
+        [Display(Name = "Total Distance")]
         public int totalDistance { get; set; }
+        [Display(Name = "Average Distance")]
         public decimal averageDistance { get; set; }
     }
 }
