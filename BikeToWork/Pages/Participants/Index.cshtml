@@ -25,28 +25,32 @@
             <th>
                 @Html.DisplayNameFor(model => model.Participant[0].bikeClass)
             </th>
+            <th>Image</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Participant) {
+@foreach (var person in Model.Participant) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.firstName)
+                @Html.DisplayFor(modelItem => person.firstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.lastName)
+                    @Html.DisplayFor(modelItem => person.lastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.team)
+                    @Html.DisplayFor(modelItem => person.team)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.bikeClass)
+                    @Html.DisplayFor(modelItem => person.bikeClass)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.id">Delete</a>
+                    <bike-img image-bike="@person.bikeClass"></bike-img>
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@person.id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@person.id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@person.id">Delete</a>
             </td>
         </tr>
 }

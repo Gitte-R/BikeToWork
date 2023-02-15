@@ -36,22 +36,28 @@
                 <a asp-page="./Index" asp-route-sortOrder="totalDistance">
                     @Html.DisplayNameFor(modelItem => Model.listOfViewParticipant[0].totalDistance)
                 </a>
+                <arrow-tag id="arrow-distance" class="arrow-class"></arrow-tag>
             </th>
             <th>
-                <a asp-page="./Index" asp-route-sortOrder="numberOfBikeRides">
-                @Html.DisplayNameFor(modelItem => Model.listOfViewParticipant[0].numberOfBikeRides)
+                <a asp-page="./Index" asp-route-sortOrder="numberOfBikeRides" >
+                @Html.DisplayNameFor(modelItem => Model.listOfViewParticipant[0].totalBikeRides)
                 </a>
+                <arrow-tag id="arrow-rides" class="arrow-class"></arrow-tag>
             </th>
             <th>
                 <a asp-page="./Index" asp-route-sortOrder="averageDistance">
                 @Html.DisplayNameFor(modelItem => Model.listOfViewParticipant[0].averageDistance)
                 </a>
+                <arrow-tag id="arrow-average" class="arrow-class"></arrow-tag>
             </th>
             <th>
                 <div>
                     <label asp-for="participant.bikeClass" class="control-label"></label>
                     <span asp-validation-for="participant.bikeClass" class="text-danger"></span>
                 </div>
+            </th>
+            <th>
+                
             </th>
         </tr>
     </thead>
@@ -62,11 +68,11 @@
                 <td>
                 @if (i < 3)
                 {
-                    <img style="height:50px" src=@($"images/{i+1}Place.jpg")>
+                    <img style="height:70px" src=@($"images/{i+1}Place.jpg")>
                 }
                 else
                 {
-                    <img style="height:50px" src=@($"images/NoMedal.jpg")>
+                    <img style="height:70px" src=@("images/NoMedal.jpg")>
                 }
                 </td>
                 <td>
@@ -76,13 +82,16 @@
                     @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].totalDistance)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].numberOfBikeRides)
+                    @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].totalBikeRides)
                 </td>
-            <td>
-                @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].averageDistance)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].averageDistance)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => Model.listOfViewParticipant[i].bikeClass)
+                </td>
+                <td>
+                    <bike-img image-bike="@Model.listOfViewParticipant[i].bikeClass"></bike-img>
                 </td>
             </tr>
         }

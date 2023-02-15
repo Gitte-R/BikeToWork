@@ -10,6 +10,9 @@ using BikeToWork.Data.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
 using Microsoft.Data.SqlClient;
+using BikeToWork.Data.TagHelpers;
+using Microsoft.AspNetCore.Razor.TagHelpers;
+using Microsoft.CodeAnalysis;
 
 namespace BikeToWork.Pages.Highscores
 {
@@ -49,7 +52,7 @@ namespace BikeToWork.Pages.Highscores
 
                 listOfAllBikeRidesById = GetAllBikeRidesById(participant.id, totalBikeRides);
                 viewParticipant.allBikeRides = listOfAllBikeRidesById.ToList();
-                viewParticipant.numberOfBikeRides = viewParticipant.allBikeRides.Count;
+                viewParticipant.totalBikeRides = viewParticipant.allBikeRides.Count;
 
                 viewParticipant.totalDistance = GetTotalDistance(viewParticipant.id);
                 viewParticipant.averageDistance = GetAverageDistance(viewParticipant);
@@ -71,9 +74,9 @@ namespace BikeToWork.Pages.Highscores
         }
         public decimal GetAverageDistance(ViewParticipant _viewParticipant)
         {
-            if (_viewParticipant.numberOfBikeRides != 0)
+            if (_viewParticipant.totalBikeRides != 0)
             {
-                _viewParticipant.averageDistance = (Decimal)_viewParticipant.totalDistance / _viewParticipant.numberOfBikeRides;
+                _viewParticipant.averageDistance = (Decimal)_viewParticipant.totalDistance / _viewParticipant.totalBikeRides;
 
             }
 
@@ -112,7 +115,7 @@ namespace BikeToWork.Pages.Highscores
             }
 
             ConvertToViewParticipant();
-
+             
             #region Filtering
             if (!String.IsNullOrEmpty(filter))
             {
@@ -130,9 +133,10 @@ namespace BikeToWork.Pages.Highscores
             {
                 case "totalDistance":
                     viewParticipantsQueryable = viewParticipantsQueryable.OrderByDescending(x => x.totalDistance);
+                    
                     break;
                 case "numberOfBikeRides":
-                    viewParticipantsQueryable = viewParticipantsQueryable.OrderByDescending(x => x.numberOfBikeRides);
+                    viewParticipantsQueryable = viewParticipantsQueryable.OrderByDescending(x => x.totalBikeRides);
                     break;
                 case "averageDistance":
                     viewParticipantsQueryable = viewParticipantsQueryable.OrderByDescending(x => x.averageDistance);
@@ -142,7 +146,7 @@ namespace BikeToWork.Pages.Highscores
                     break;
             }
             #endregion
-
+            
             listOfViewParticipant = viewParticipantsQueryable.ToList();
         }
     }
@@ -150,10 +154,10 @@ namespace BikeToWork.Pages.Highscores
 
 
 
-//redirekte til Index?
- //custom tag helper med billeder af bike class. Måske også på andre sider som edit/create.
+//GetElementById til arrow tag
+//custom tag helper med billeder af bike class. Måske også på andre sider som edit/create.
 // test hvis databasen er tom. Er return tilstrækkeligt?
-// ved alle klasser i dropdown, redirect til hovedside
+// ved alle klasser i dropdown, redirect til hovedside.//redirekte til Index?
 //få dropdown til at blive på valgt item.
 //Kan man lave en lille pil, når en sort kolonne er valgt? Ligesom nedenfor.
 //Få tabel til at have scroll i højre side?
