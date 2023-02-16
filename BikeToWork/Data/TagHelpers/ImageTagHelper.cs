@@ -8,21 +8,21 @@ namespace BikeToWork.Data.TagHelpers
     [HtmlTargetElement("bike-img")]
     public class ImageTagHelper : TagHelper
     {
-        public BikeClassEnum imageBike { get; set; }
-        public string imgUrl { get; set; }
+        public BikeClassEnum ImageBike { get; set; }
+        public string ImgUrl { get; set; }
 
-        public string CreateUrl(string imageBike)
+        public string CreateUrl(string _imageBike)
         {
-            imgUrl = $"/images/{imageBike}.jpg";
-            return imgUrl;
+            ImgUrl = $"/images/{_imageBike}.jpg";
+            return ImgUrl;
         }
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "img";
             output.TagMode = TagMode.SelfClosing;
             output.Attributes.Add("style", "max-width: 70px");
-            output.Attributes.Add("style", "max-height: 70px");
-            output.Attributes.Add("src", CreateUrl(imageBike.ToString()));
+            output.Attributes.Add("style", "height: 70px");
+            output.Attributes.Add("src", CreateUrl(ImageBike.ToString()));
         }
     }
 }

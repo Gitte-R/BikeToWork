@@ -1,0 +1,78 @@
+﻿@page
+@model BikeToWork.Pages.Scoreboard.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="text-center" >
+    <img src="~/images/Podium.jpg" style="max-height: 250px; max-width: 100%"  />
+    <h3>Scoreboard of <strong>Bike To Work</strong></h3>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ranking
+            </th>
+            <th>
+                Name of Participant
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="totalDistance">
+                    @Html.DisplayNameFor(modelItem => Model.ListOfViewParticipant[0].TotalDistance)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="numberOfBikeRides" >
+                    @Html.DisplayNameFor(modelItem => Model.ListOfViewParticipant[0].TotalBikeRides)
+                </a>
+            </th>
+            <th>
+                <a asp-page="./Index" asp-route-sortOrder="averageDistance">
+                    @Html.DisplayNameFor(modelItem => Model.ListOfViewParticipant[0].AverageDistance)
+                </a>
+            </th>
+            <th>
+                <div>
+                    <label asp-for="ViewParticipant.bikeClass" class="control-label"></label>
+                    <span asp-validation-for="ViewParticipant.bikeClass" class="text-danger"></span>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = 0; i < Model.ListOfViewParticipant.Count(); i++)
+        {
+            <tr style="vertical-align:middle">
+                <td>
+                @if (i < 3)
+                {
+                    <img style="height:70px" src=@($"images/{i+1}Place.jpg")>
+                }
+                else
+                {
+                    <img style="height:70px" src=@("images/NoMedal.jpg")>
+                }
+                </td>
+                <td>
+                    @String.Concat(Model.ListOfViewParticipant[i].firstName, " ", Model.ListOfViewParticipant[i].lastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ListOfViewParticipant[i].TotalDistance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ListOfViewParticipant[i].TotalBikeRides)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.ListOfViewParticipant[i].AverageDistance)
+                </td>
+                <td>
+                    <bike-img Image-bike="@Model.ListOfViewParticipant[i].bikeClass"></bike-img>
+                    @Html.DisplayFor(modelItem => Model.ListOfViewParticipant[i].bikeClass)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

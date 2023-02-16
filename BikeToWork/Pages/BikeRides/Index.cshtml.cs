@@ -19,14 +19,62 @@ namespace BikeToWork.Pages.BikeRides
             _context = context;
         }
 
-        public IList<BikeRide> BikeRide { get;set; } = default!;
+        public ViewBikeRide viewBikeRide { get; set; }
+        public IList<BikeRide> listOfBikeRides { get; set; }
+        public IList<ViewBikeRide> listOfViewBikeRides { get; set; }
+        public IList<Data.Models.Participant> listOfParticipants { get; set; }
+        public IQueryable<ViewBikeRide> viewBikeRidesQueryable { get; set; }
 
-        public async Task OnGetAsync()
+
+        public IList<ViewBikeRide> ConvertToViewBikeRide()
+        {
+            listOfParticipants = _context.Participants.ToList();
+            listOfViewBikeRides = new List<ViewBikeRide>();
+
+
+            foreach (var bikeRide in listOfBikeRides)
+            {
+                viewBikeRide = new ViewBikeRide()
+                {
+                    id = bikeRide.id,
+                    date = bikeRide.date,
+                    participantId = bikeRide.participantId,
+                    Distance = bikeRide.Distance
+                };
+
+                for (int i = 0; i < listOfParticipants.Count; i++)
+                {
+                    if (bikeRide.participantId == listOfParticipants[i].id)
+                    {
+                        viewBikeRide.FullName = listOfParticipants[i].firstName + " " + listOfParticipants[i].lastName;
+                    }
+                }
+
+                listOfViewBikeRides.Add(viewBikeRide);
+            }
+            return listOfViewBikeRides;
+        }
+
+        public async Task OnGetAsync(string filter)
         {
             if (_context.BikeRides != null)
             {
-                BikeRide = await _context.BikeRides.ToListAsync();
+                listOfBikeRides = await _context.BikeRides.ToListAsync();
             }
+
+            viewBikeRidesQueryable = ConvertToViewBikeRide().AsQueryable();
+
+            #region Filtering
+            if (!String.IsNullOrEmpty(filter))
+            {
+                viewBikeRidesQueryable = viewBikeRidesQueryable.Distinct().Where(s => s.FullName.Equals(filter));
+            }
+            else
+            {
+                RedirectToAction("List");
+            }
+            #endregion
         }
     }
 }
+

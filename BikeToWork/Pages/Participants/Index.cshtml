@@ -5,54 +5,52 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3>Registration of Participants</h3>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Participant[0].firstName)
+                @Html.DisplayNameFor(model => model.ListOfParticipants[0].firstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Participant[0].lastName)
+                @Html.DisplayNameFor(model => model.ListOfParticipants[0].lastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Participant[0].team)
+                @Html.DisplayNameFor(model => model.ListOfParticipants[0].team)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Participant[0].bikeClass)
+                @Html.DisplayNameFor(model => model.ListOfParticipants[0].bikeClass)
             </th>
-            <th>Image</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var person in Model.Participant) {
-        <tr>
+        @foreach (var person in Model.ListOfParticipants)
+        {
+            <tr style="vertical-align:middle">
             <td>
                 @Html.DisplayFor(modelItem => person.firstName)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => person.lastName)
+                @Html.DisplayFor(modelItem => person.lastName)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => person.team)
+                @Html.DisplayFor(modelItem => person.team)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => person.bikeClass)
+                <bike-img Image-bike="@person.bikeClass"></bike-img>
+                @Html.DisplayFor(modelItem => person.bikeClass)
             </td>
             <td>
-                    <bike-img image-bike="@person.bikeClass"></bike-img>
-            </td>
-            <td>
-                    <a asp-page="./Edit" asp-route-id="@person.id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@person.id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@person.id">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@person.id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@person.id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@person.id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
+<h5>
+    <a asp-page="Create">Create new Participant</a>
+</h5>

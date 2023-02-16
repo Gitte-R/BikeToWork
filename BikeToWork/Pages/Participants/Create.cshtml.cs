@@ -50,3 +50,5 @@ namespace BikeToWork.Pages.Participant
         }
     }
 }
+
+//få dropdown til at blive på valgt item 

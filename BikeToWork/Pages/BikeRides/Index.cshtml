@@ -10,32 +10,55 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+<div>
+    <form method="get">
+        <div class="form-actions no-color" style="max-width: 15%; display: inline-block;">
+            <select onchange="this.form.submit()" asp-for="viewBikeRide.FullName" name="filter" class="form-control">
+                <option value="">---Filter by Participant---</option>
+                @foreach (var person in Model.listOfParticipants)
+                {
+                    <option>@String.Concat(person.firstName + " " + person.lastName)</option>
+                }
+                <option value="">All Participants</option>
+            </select>
+        </div>
+    </form>
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BikeRide[0].date)
+                @Html.DisplayNameFor(model => model.listOfViewBikeRides[0].date)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BikeRide[0].participantId)
+                @Html.DisplayNameFor(model => model.listOfViewBikeRides[0].FullName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BikeRide[0].Distance)
+                @Html.DisplayNameFor(model => model.listOfViewBikeRides[0].Distance)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.listOfViewBikeRides[0].participantId)
+            </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.BikeRide) {
+        @foreach (var item in Model.viewBikeRidesQueryable)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.participantId)
+                @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.participantId)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.id">Edit</a> |
@@ -46,3 +69,6 @@
 }
     </tbody>
 </table>
+
+
+

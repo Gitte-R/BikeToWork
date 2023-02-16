@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BikeToWork.Data;
-using BikeToWork.Data.Models;
 
 namespace BikeToWork.Pages.Participant
 {
@@ -19,14 +12,18 @@ namespace BikeToWork.Pages.Participant
             _context = context;
         }
 
-        public IList<Data.Models.Participant> Participant { get;set; } = default!;
+        public IList<Data.Models.Participant> ListOfParticipants { get;set; } 
 
         public async Task OnGetAsync()
         {
             if (_context.Participants != null)
             {
-                Participant = await _context.Participants.ToListAsync();
+                ListOfParticipants = await _context.Participants.ToListAsync();
             }
         }
     }
 }
+
+//Hvorfor er sidst række højere end de andre?
+//Ændre alle mine properties til at starte med stort
+// ved alle klasser i dropdown, redirect til hovedside.//redirekte til Index? RedirectToAction("List");
