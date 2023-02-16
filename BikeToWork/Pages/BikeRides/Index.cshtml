@@ -10,21 +10,6 @@
 <p>
     <a asp-page="Create">Create New</a>
 </p>
-<div>
-    <form method="get">
-        <div class="form-actions no-color" style="max-width: 15%; display: inline-block;">
-            <select onchange="this.form.submit()" asp-for="ViewBikeRide.FullName" name="filter" class="form-control">
-                <option value="">---Filter by Participant---</option>
-                @foreach (var person in Model.ListOfParticipants)
-                {
-                    <option>@String.Concat(person.FirstName + " " + person.LastName)</option>
-                }
-                <option value="">All Participants</option>
-            </select>
-        </div>
-    </form>
-</div>
-
 <table class="table">
     <thead>
         <tr>

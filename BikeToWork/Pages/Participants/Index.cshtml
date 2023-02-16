@@ -7,26 +7,43 @@
 
 <h3>Registration of Participants</h3>
 
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color" style="width:fit-content; display: inline-block;">
+        <select onchange="this.form.submit()" asp-for="ViewParticipant.FirstName" name="filter" class="form-control">
+            <option value="" disabled selected>---Filter by Bike Class---</option>
+            @foreach (var bikeclass in Model.ListOfBikeClasses)
+            {
+                <option>@bikeclass</option>
+
+            }
+            <option value="">All bike classes</option>
+        </select>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ListOfParticipants[0].FirstName)
+                @Html.DisplayNameFor(model => model.ListOfViewParticipant[0].FirstName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListOfParticipants[0].LastName)
+                @Html.DisplayNameFor(model => model.ListOfViewParticipant[0].LastName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListOfParticipants[0].Team)
+                @Html.DisplayNameFor(model => model.ListOfViewParticipant[0].Team)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ListOfParticipants[0].BikeClass)
+                @Html.DisplayNameFor(model => model.ListOfViewParticipant[0].BikeClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ListOfViewParticipant[0].TotalBikeRides)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var person in Model.ListOfParticipants)
+        @foreach (var person in Model.ListOfViewParticipant)
         {
             <tr style="vertical-align:middle">
             <td>
@@ -41,6 +58,9 @@
             <td>
                 <bike-img Image-bike="@person.BikeClass"></bike-img>
                 @Html.DisplayFor(modelItem => person.BikeClass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => person.TotalBikeRides)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@person.Id">Edit</a> |

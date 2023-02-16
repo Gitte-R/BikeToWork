@@ -35,7 +35,9 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Participant.BikeClass)
         </dd>
-    </dl>
+        <dt class="col-sm-2">
+            <bike-img Image-bike="@Model.Participant.BikeClass"></bike-img>
+        </dt>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Participant?.Id">Edit</a> |

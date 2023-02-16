@@ -19,5 +19,3 @@ namespace BikeToWork.Data.Models
 }
 
 //Hvis id er unit (0 til 4 mia) så giver det problemer med funktionen i onpostAsync med funktionen: ParticipantExists(Participant.id) fordi den er lavet på en int. I så fald skal den convertTiInt
-
-// Typen af cykel er oprettet på brugeren. Så tager brugeren en anden cykel skal denne have en yderligere profil. Antager at de fleste har én cykel. Man tilmelder sig en kategori på cykel klasse.

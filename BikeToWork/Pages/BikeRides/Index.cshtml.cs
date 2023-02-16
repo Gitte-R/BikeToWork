@@ -49,7 +49,7 @@ namespace BikeToWork.Pages.BikeRides
             return ListOfViewBikeRides;
         }
 
-        public async Task OnGetAsync(string filter)
+        public async Task OnGetAsync()
         {
             if (_context.BikeRides != null)
             {
@@ -57,17 +57,6 @@ namespace BikeToWork.Pages.BikeRides
             }
 
             ViewBikeRidesQueryable = ConvertToViewBikeRide().AsQueryable();
-
-            #region Filtering
-            if (!String.IsNullOrEmpty(filter))
-            {
-                ViewBikeRidesQueryable = ViewBikeRidesQueryable.Distinct().Where(s => s.FullName.Equals(filter));
-            }
-            else
-            {
-                RedirectToAction("List");
-            }
-            #endregion
         }
     }
 }

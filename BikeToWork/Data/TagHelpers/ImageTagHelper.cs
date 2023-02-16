@@ -21,7 +21,7 @@ namespace BikeToWork.Data.TagHelpers
             output.TagName = "img";
             output.TagMode = TagMode.SelfClosing;
             output.Attributes.Add("style", "max-width: 70px");
-            output.Attributes.Add("style", "height: 70px");
+            output.Attributes.Add("style", "max-height: 70px");
             output.Attributes.Add("src", CreateUrl(ImageBike.ToString()));
         }
     }
