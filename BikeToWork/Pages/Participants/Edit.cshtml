@@ -13,26 +13,26 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Participant.id" />
+            <input type="hidden" asp-for="Participant.Id" />
             <div class="form-group">
-                <label asp-for="Participant.firstName" class="control-label"></label>
-                <input asp-for="Participant.firstName" class="form-control" />
-                <span asp-validation-for="Participant.firstName" class="text-danger"></span>
+                <label asp-for="Participant.FirstName" class="control-label"></label>
+                <input asp-for="Participant.FirstName" class="form-control" />
+                <span asp-validation-for="Participant.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Participant.lastName" class="control-label"></label>
-                <input asp-for="Participant.lastName" class="form-control" />
-                <span asp-validation-for="Participant.lastName" class="text-danger"></span>
+                <label asp-for="Participant.LastName" class="control-label"></label>
+                <input asp-for="Participant.LastName" class="form-control" />
+                <span asp-validation-for="Participant.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Participant.team" class="control-label"></label>
-                <input asp-for="Participant.team" class="form-control" />
-                <span asp-validation-for="Participant.team" class="text-danger"></span>
+                <label asp-for="Participant.Team" class="control-label"></label>
+                <input asp-for="Participant.Team" class="form-control" />
+                <span asp-validation-for="Participant.Team" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Participant.bikeClass" class="control-label"></label>
-                <select asp-for="Participant.bikeClass" class="form-control"></select>
-                <span asp-validation-for="Participant.bikeClass" class="text-danger"></span>
+                <label asp-for="Participant.BikeClass" class="control-label"></label>
+                <select asp-for="Participant.BikeClass" class="form-control"></select>
+                <span asp-validation-for="Participant.BikeClass" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

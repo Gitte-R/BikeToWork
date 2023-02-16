@@ -19,31 +19,31 @@ namespace BikeToWork.Pages.Participant
             _context = context;
         }
 
-        public IList<BikeClassEnum> listOfBikeClasses { get; set; }
+        public IList<BikeClassEnum> ListOfBikeClasses { get; set; }
 
 
         public IActionResult OnGet()
         {
-            listOfBikeClasses = (IList<BikeClassEnum>)Enum.GetValues(typeof(BikeClassEnum));
+            ListOfBikeClasses = (IList<BikeClassEnum>)Enum.GetValues(typeof(BikeClassEnum));
 
             return Page();
         }
 
         [BindProperty]
-        public Data.Models.Participant participant { get; set; }
+        public Data.Models.Participant Participant { get; set; }
         
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
-            listOfBikeClasses = (IList<BikeClassEnum>)Enum.GetValues(typeof(BikeClassEnum));
+            ListOfBikeClasses = (IList<BikeClassEnum>)Enum.GetValues(typeof(BikeClassEnum));
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Participants.Add(participant);
+            _context.Participants.Add(Participant);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

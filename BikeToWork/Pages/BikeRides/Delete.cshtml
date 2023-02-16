@@ -13,16 +13,16 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BikeRide.date)
+            @Html.DisplayNameFor(model => model.BikeRide.Date)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BikeRide.date)
+            @Html.DisplayFor(model => model.BikeRide.Date)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BikeRide.participantId)
+            @Html.DisplayNameFor(model => model.BikeRide.ParticipantId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BikeRide.participantId)
+            @Html.DisplayFor(model => model.BikeRide.ParticipantId)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BikeRide.Distance)
@@ -33,7 +33,7 @@
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="BikeRide.id" />
+        <input type="hidden" asp-for="BikeRide.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to List</a>
     </form>

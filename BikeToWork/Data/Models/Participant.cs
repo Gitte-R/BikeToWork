@@ -5,16 +5,16 @@ namespace BikeToWork.Data.Models
 {
     public class Participant
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [Display(Name = "First name")]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
         [Display(Name = "Last name")]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
         [Display(Name = "Name of Team")]
-        public string? team { get; set; }
+        public string? Team { get; set; }
         [Display(Name = "Type of Bike")]
-        public BikeClassEnum bikeClass { get; set; }
-        public IList<BikeRide>? allBikeRides { get; set; }
+        public BikeClassEnum BikeClass { get; set; }
+        public IList<BikeRide>? AllBikeRides { get; set; }
     }
 }
 

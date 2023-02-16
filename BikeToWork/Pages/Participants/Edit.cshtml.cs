@@ -21,7 +21,7 @@ namespace BikeToWork.Pages.Participant
         }
 
         [BindProperty]
-        public Data.Models.Participant Participant { get; set; } = default!;
+        public Data.Models.Participant Participant { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,7 +30,7 @@ namespace BikeToWork.Pages.Participant
                 return NotFound();
             }
 
-            var participant =  await _context.Participants.FirstOrDefaultAsync(m => m.id == id);
+            var participant =  await _context.Participants.FirstOrDefaultAsync(m => m.Id == id);
             if (participant == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace BikeToWork.Pages.Participant
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ParticipantExists(Participant.id))
+                if (!ParticipantExists(Participant.Id))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace BikeToWork.Pages.Participant
 
         private bool ParticipantExists(int id)
         {
-          return _context.Participants.Any(e => e.id == id);
+          return _context.Participants.Any(e => e.Id == id);
         }
     }
 }

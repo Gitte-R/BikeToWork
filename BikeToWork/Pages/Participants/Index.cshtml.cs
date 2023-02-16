@@ -26,4 +26,4 @@ namespace BikeToWork.Pages.Participant
 
 //Hvorfor er sidst række højere end de andre?
 //Ændre alle mine properties til at starte med stort
-// ved alle klasser i dropdown, redirect til hovedside.//redirekte til Index? RedirectToAction("List");
+// ved alle klasser i dropdown, redirect til hovedside.//redirekte til Index? RedirectToAction("List"); 

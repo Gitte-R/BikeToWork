@@ -35,8 +35,8 @@
             </th>
             <th>
                 <div>
-                    <label asp-for="ViewParticipant.bikeClass" class="control-label"></label>
-                    <span asp-validation-for="ViewParticipant.bikeClass" class="text-danger"></span>
+                    <label asp-for="ViewParticipant.BikeClass" class="control-label"></label>
+                    <span asp-validation-for="ViewParticipant.BikeClass" class="text-danger"></span>
                 </div>
             </th>
         </tr>
@@ -56,7 +56,7 @@
                 }
                 </td>
                 <td>
-                    @String.Concat(Model.ListOfViewParticipant[i].firstName, " ", Model.ListOfViewParticipant[i].lastName)
+                    @String.Concat(Model.ListOfViewParticipant[i].FirstName, " ", Model.ListOfViewParticipant[i].LastName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => Model.ListOfViewParticipant[i].TotalDistance)
@@ -68,8 +68,8 @@
                     @Html.DisplayFor(modelItem => Model.ListOfViewParticipant[i].AverageDistance)
                 </td>
                 <td>
-                    <bike-img Image-bike="@Model.ListOfViewParticipant[i].bikeClass"></bike-img>
-                    @Html.DisplayFor(modelItem => Model.ListOfViewParticipant[i].bikeClass)
+                    <bike-img Image-bike="@Model.ListOfViewParticipant[i].BikeClass"></bike-img>
+                    @Html.DisplayFor(modelItem => Model.ListOfViewParticipant[i].BikeClass)
                 </td>
             </tr>
         }

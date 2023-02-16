@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BikeToWork.Data;
 using BikeToWork.Data.Models;
 
 namespace BikeToWork.Pages.BikeRides
@@ -19,55 +13,55 @@ namespace BikeToWork.Pages.BikeRides
             _context = context;
         }
 
-        public ViewBikeRide viewBikeRide { get; set; }
-        public IList<BikeRide> listOfBikeRides { get; set; }
-        public IList<ViewBikeRide> listOfViewBikeRides { get; set; }
-        public IList<Data.Models.Participant> listOfParticipants { get; set; }
-        public IQueryable<ViewBikeRide> viewBikeRidesQueryable { get; set; }
+        public ViewBikeRide ViewBikeRide { get; set; }
+        public IList<BikeRide> ListOfBikeRides { get; set; }
+        public IList<ViewBikeRide> ListOfViewBikeRides { get; set; }
+        public IList<Data.Models.Participant> ListOfParticipants { get; set; }
+        public IQueryable<ViewBikeRide> ViewBikeRidesQueryable { get; set; }
 
 
         public IList<ViewBikeRide> ConvertToViewBikeRide()
         {
-            listOfParticipants = _context.Participants.ToList();
-            listOfViewBikeRides = new List<ViewBikeRide>();
+            ListOfParticipants = _context.Participants.ToList();
+            ListOfViewBikeRides = new List<ViewBikeRide>();
 
 
-            foreach (var bikeRide in listOfBikeRides)
+            foreach (var bikeRide in ListOfBikeRides)
             {
-                viewBikeRide = new ViewBikeRide()
+                ViewBikeRide = new ViewBikeRide()
                 {
-                    id = bikeRide.id,
-                    date = bikeRide.date,
-                    participantId = bikeRide.participantId,
+                    Id = bikeRide.Id,
+                    Date = bikeRide.Date,
+                    ParticipantId = bikeRide.ParticipantId,
                     Distance = bikeRide.Distance
                 };
 
-                for (int i = 0; i < listOfParticipants.Count; i++)
+                for (int i = 0; i < ListOfParticipants.Count; i++)
                 {
-                    if (bikeRide.participantId == listOfParticipants[i].id)
+                    if (bikeRide.ParticipantId == ListOfParticipants[i].Id)
                     {
-                        viewBikeRide.FullName = listOfParticipants[i].firstName + " " + listOfParticipants[i].lastName;
+                        ViewBikeRide.FullName = ListOfParticipants[i].FirstName + " " + ListOfParticipants[i].LastName;
                     }
                 }
 
-                listOfViewBikeRides.Add(viewBikeRide);
+                ListOfViewBikeRides.Add(ViewBikeRide);
             }
-            return listOfViewBikeRides;
+            return ListOfViewBikeRides;
         }
 
         public async Task OnGetAsync(string filter)
         {
             if (_context.BikeRides != null)
             {
-                listOfBikeRides = await _context.BikeRides.ToListAsync();
+                ListOfBikeRides = await _context.BikeRides.ToListAsync();
             }
 
-            viewBikeRidesQueryable = ConvertToViewBikeRide().AsQueryable();
+            ViewBikeRidesQueryable = ConvertToViewBikeRide().AsQueryable();
 
             #region Filtering
             if (!String.IsNullOrEmpty(filter))
             {
-                viewBikeRidesQueryable = viewBikeRidesQueryable.Distinct().Where(s => s.FullName.Equals(filter));
+                ViewBikeRidesQueryable = ViewBikeRidesQueryable.Distinct().Where(s => s.FullName.Equals(filter));
             }
             else
             {

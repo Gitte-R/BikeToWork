@@ -19,18 +19,18 @@ namespace BikeToWork.Pages.BikeRides
             _context = context;
         }
 
-        public IList<Data.Models.Participant> listOfParticipants { get; set; }
+        public IList<Data.Models.Participant> ListOfParticipants { get; set; }
       
 
         public IActionResult OnGet()
         {
-            listOfParticipants = _context.Participants.ToList();
+            ListOfParticipants = _context.Participants.ToList();
             return Page();
         }
 
 
         [BindProperty]
-        public BikeRide bikeRide { get; set; }
+        public BikeRide BikeRide { get; set; }
 
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
@@ -41,7 +41,7 @@ namespace BikeToWork.Pages.BikeRides
                 return Page();
             }
 
-            _context.BikeRides.Add(bikeRide);
+            _context.BikeRides.Add(BikeRide);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -29,7 +29,7 @@ namespace BikeToWork.Pages.Participant
                 return NotFound();
             }
 
-            var participant = await _context.Participants.FirstOrDefaultAsync(m => m.id == id);
+            var participant = await _context.Participants.FirstOrDefaultAsync(m => m.Id == id);
 
             if (participant == null)
             {

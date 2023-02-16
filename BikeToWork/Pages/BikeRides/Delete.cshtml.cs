@@ -29,7 +29,7 @@ namespace BikeToWork.Pages.BikeRides
                 return NotFound();
             }
 
-            var bikeride = await _context.BikeRides.FirstOrDefaultAsync(m => m.id == id);
+            var bikeride = await _context.BikeRides.FirstOrDefaultAsync(m => m.Id == id);
 
             if (bikeride == null)
             {

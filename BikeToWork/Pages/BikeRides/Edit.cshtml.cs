@@ -21,7 +21,7 @@ namespace BikeToWork.Pages.BikeRides
         }
 
         [BindProperty]
-        public BikeRide BikeRide { get; set; } = default!;
+        public BikeRide BikeRide { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,7 +30,7 @@ namespace BikeToWork.Pages.BikeRides
                 return NotFound();
             }
 
-            var bikeride =  await _context.BikeRides.FirstOrDefaultAsync(m => m.id == id);
+            var bikeride =  await _context.BikeRides.FirstOrDefaultAsync(m => m.Id == id);
             if (bikeride == null)
             {
                 return NotFound();
@@ -56,7 +56,7 @@ namespace BikeToWork.Pages.BikeRides
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!BikeRideExists(BikeRide.id))
+                if (!BikeRideExists(BikeRide.Id))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace BikeToWork.Pages.BikeRides
 
         private bool BikeRideExists(int id)
         {
-          return _context.BikeRides.Any(e => e.id == id);
+          return _context.BikeRides.Any(e => e.Id == id);
         }
     }
 }

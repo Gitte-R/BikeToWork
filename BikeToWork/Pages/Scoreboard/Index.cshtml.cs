@@ -26,49 +26,49 @@ namespace BikeToWork.Pages.Scoreboard
             {
                 ViewParticipant = new ViewParticipant()
                 {
-                    id = participant.id,
-                    firstName = participant.firstName,
-                    lastName = participant.lastName,
-                    team = participant.team,
-                    bikeClass = participant.bikeClass,
+                    Id = participant.Id,
+                    FirstName = participant.FirstName,
+                    LastName = participant.LastName,
+                    Team = participant.Team,
+                    BikeClass = participant.BikeClass,
                 };
 
-                ViewParticipant.allBikeRides = GetAllBikeRidesById(ViewParticipant.id);
-                ViewParticipant.TotalBikeRides = ViewParticipant.allBikeRides.Count;
+                ViewParticipant.AllBikeRides = GetAllBikeRidesById(ViewParticipant.Id);
+                ViewParticipant.TotalBikeRides = ViewParticipant.AllBikeRides.Count;
                 ViewParticipant.TotalDistance = GetTotalDistance(ViewParticipant);
                 ViewParticipant.AverageDistance = GetAverageDistance(ViewParticipant);
                 ListOfViewParticipant.Add(ViewParticipant);
             }
         }
-        public IList<BikeRide> GetAllBikeRidesById(int _id)
+        public IList<BikeRide> GetAllBikeRidesById(int id)
         {
             ListOfBikeRides = _context.BikeRides.ToList();
             ListOfParticipantBikeRides = new List<BikeRide>();
 
             foreach (var bikeRide in ListOfBikeRides)
             {
-                if (bikeRide.participantId == _id)
+                if (bikeRide.ParticipantId == id)
                 {
                     ListOfParticipantBikeRides.Add(bikeRide);
                 }
             }
             return ListOfParticipantBikeRides;
         }
-        public decimal GetAverageDistance(ViewParticipant _viewParticipant)
+        public decimal GetAverageDistance(ViewParticipant viewParticipant)
         {
-            if (_viewParticipant.TotalBikeRides != 0)
+            if (viewParticipant.TotalBikeRides != 0)
             {
-                _viewParticipant.AverageDistance = (decimal)_viewParticipant.TotalDistance / _viewParticipant.TotalBikeRides;
+                viewParticipant.AverageDistance = (decimal)viewParticipant.TotalDistance / viewParticipant.TotalBikeRides;
             }
 
-            _viewParticipant.AverageDistance = Math.Round(_viewParticipant.AverageDistance, 2);
-            return _viewParticipant.AverageDistance;
+            viewParticipant.AverageDistance = Math.Round(viewParticipant.AverageDistance, 2);
+            return viewParticipant.AverageDistance;
         }
-        public int GetTotalDistance(ViewParticipant _viewParticipant)
+        public int GetTotalDistance(ViewParticipant viewParticipant)
         {
             int totalDistance = 0;
 
-            foreach (var bikeRide in _viewParticipant.allBikeRides)
+            foreach (var bikeRide in viewParticipant.AllBikeRides)
             {
                 totalDistance += bikeRide.Distance;
             }

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using BikeToWork.Data;
 using BikeToWork.Data.Models;
 
 namespace BikeToWork.Pages.BikeRides
@@ -28,7 +23,7 @@ namespace BikeToWork.Pages.BikeRides
                 return NotFound();
             }
 
-            var bikeride = await _context.BikeRides.FirstOrDefaultAsync(m => m.id == id);
+            var bikeride = await _context.BikeRides.FirstOrDefaultAsync(m => m.Id == id);
             if (bikeride == null)
             {
                 return NotFound();

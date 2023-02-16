@@ -5,11 +5,11 @@ namespace BikeToWork.Data.Models
 {
     public class BikeRide
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Date of Bike ride")]
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
         [Display(Name = "Id of Participant")]
-        public int participantId { get; set; }
+        public int ParticipantId { get; set; }
         [Display(Name = "Distance of Bike ride")]
         public byte Distance { get; set; }
     }
