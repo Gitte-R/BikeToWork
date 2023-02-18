@@ -6,7 +6,6 @@
 }
 
 <h1>Details</h1>
-
 <div>
     <h4>Participant</h4>
     <hr />
@@ -33,11 +32,11 @@
             @Html.DisplayNameFor(model => model.Participant.BikeClass)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Participant.BikeClass)
-        </dd>
-        <dt class="col-sm-2">
+            <div>
+                @Html.DisplayFor(model => model.Participant.BikeClass)
+            </div>
             <bike-img Image-bike="@Model.Participant.BikeClass"></bike-img>
-        </dt>
+        </dd>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Participant?.Id">Edit</a> |

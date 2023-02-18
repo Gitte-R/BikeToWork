@@ -18,19 +18,41 @@
             @Html.DisplayFor(model => model.BikeRide.Date)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BikeRide.ParticipantId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BikeRide.ParticipantId)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BikeRide.Distance)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BikeRide.Distance)
+            @Html.DisplayFor(model => model.BikeRide.Distance) km
+        </dd>
+        <dt class="col-sm-2">
+            Name of Participant
+        </dt>
+        <dd class="col-sm-10">
+            @for (int i = 0; i < Model.ListOfParticipants.Count; i++)
+            {
+                if (Model.BikeRide.ParticipantId == Model.ListOfParticipants[i].Id)
+                {
+                    @String.Concat(Model.ListOfParticipants[i].FirstName + " " + Model.ListOfParticipants[i].LastName);
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => Model.ListOfParticipants[0].BikeClass)
+        </dt>
+        <dd class="col-sm-10">
+            @for (int i = 0; i < Model.ListOfParticipants.Count; i++)
+            {
+                if (Model.BikeRide.ParticipantId == Model.ListOfParticipants[i].Id)
+                {
+                    <div>
+                        @Model.ListOfParticipants[i].BikeClass
+                    </div>
+                    <bike-img Image-bike="@Model.ListOfParticipants[i].BikeClass"></bike-img>
+                }
+            }
         </dd>
     </dl>
 </div>
+<hr />
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.BikeRide?.Id">Edit</a> |
     <a asp-page="./Index">Back to List</a>

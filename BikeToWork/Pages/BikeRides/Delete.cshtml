@@ -6,11 +6,23 @@
 }
 
 <h1>Delete</h1>
-
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>BikeRide</h4>
-    <hr />
+    <h4>Bike Ride</h4>
+    <div class="col-md-4">
+        <hr />
+        <p>
+        Name of Participant
+        @for (int i = 0; i < Model.ListOfParticipants.Count; i++)
+        {
+            if (Model.BikeRide.ParticipantId == Model.ListOfParticipants[i].Id)
+            {
+                <input value="@Model.ListOfParticipants[i].FirstName @Model.ListOfParticipants[i].LastName" class="form-control" readonly />
+            }
+        }
+        </p>
+        <hr />
+    </div>
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BikeRide.Date)
@@ -19,19 +31,12 @@
             @Html.DisplayFor(model => model.BikeRide.Date)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.BikeRide.ParticipantId)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BikeRide.ParticipantId)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.BikeRide.Distance)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.BikeRide.Distance)
+            @Html.DisplayFor(model => model.BikeRide.Distance) km
         </dd>
     </dl>
-    
     <form method="post">
         <input type="hidden" asp-for="BikeRide.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |

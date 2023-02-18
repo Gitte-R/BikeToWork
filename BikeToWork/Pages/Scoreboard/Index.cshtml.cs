@@ -42,7 +42,7 @@ namespace BikeToWork.Pages.Scoreboard
         }
         public IList<BikeRide> GetAllBikeRidesById(int id)
         {
-            ListOfBikeRides = _context.BikeRides.ToList();
+            ListOfBikeRides = _context.BikeRides.ToList(); 
             ListOfParticipantBikeRides = new List<BikeRide>();
 
             foreach (var bikeRide in ListOfBikeRides)
@@ -93,24 +93,31 @@ namespace BikeToWork.Pages.Scoreboard
             switch (sortOrder)
             {
                 case "totalDistance":
-                    ListOfViewParticipant = ListOfViewParticipant.OrderByDescending(x => x.TotalDistance).ToList();
+                    ListOfViewParticipant =
+                        ListOfViewParticipant.OrderByDescending(x => x.TotalDistance)
+                                            .ThenByDescending(x => x.TotalBikeRides)
+                                            .ThenByDescending(x => x.AverageDistance).ToList();
                     break;
                 case "numberOfBikeRides":
-                    ListOfViewParticipant = ListOfViewParticipant.OrderByDescending(x => x.TotalBikeRides).ToList();
+                    ListOfViewParticipant = 
+                        ListOfViewParticipant.OrderByDescending(x => x.TotalBikeRides)
+                                            .ThenByDescending(x => x.TotalDistance)
+                                            .ThenByDescending(x => x.AverageDistance).ToList();
                     break;
                 case "averageDistance":
-                    ListOfViewParticipant = ListOfViewParticipant.OrderByDescending(x => x.AverageDistance).ToList();
+                    ListOfViewParticipant = 
+                        ListOfViewParticipant.OrderByDescending(x => x.AverageDistance)
+                                            .ThenByDescending(x => x.TotalDistance)
+                                            .ThenByDescending(x => x.TotalBikeRides).ToList();
                     break;
                 default:
-                    ListOfViewParticipant = ListOfViewParticipant.OrderByDescending(x => x.TotalDistance).ToList();
+                    ListOfViewParticipant = 
+                        ListOfViewParticipant.OrderByDescending(x => x.TotalDistance)
+                                            .ThenByDescending(x => x.TotalBikeRides)
+                                            .ThenByDescending(x => x.AverageDistance).ToList();
                     break;
             }
             #endregion
         }
     }
 }
-
-
-
-
-// hvad hvis listen med bikerides er tom? allBikeRides = _context.BikeRides.ToList();

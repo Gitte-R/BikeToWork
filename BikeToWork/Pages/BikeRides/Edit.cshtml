@@ -6,7 +6,6 @@
 }
 
 <h1>Edit</h1>
-
 <h4>BikeRide</h4>
 <hr />
 <div class="row">
@@ -14,28 +13,39 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="BikeRide.Id" />
+            <p>
+                Name of Participant
+                @for (int i = 0; i < Model.ListOfParticipants.Count; i++)
+                {
+                    if (Model.BikeRide.ParticipantId == Model.ListOfParticipants[i].Id)
+                    {
+                        <input value="@Model.ListOfParticipants[i].FirstName @Model.ListOfParticipants[i].LastName" class="form-control" readonly />
+                    }
+                }
+            </p>
+            <hr />
+            <div hidden class="form-group">
+                <label asp-for="BikeRide.ParticipantId" class="control-label"></label>
+                <input asp-for="BikeRide.ParticipantId" class="form-control" />
+                <span asp-validation-for="BikeRide.ParticipantId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="BikeRide.Date" class="control-label"></label>
                 <input asp-for="BikeRide.Date" class="form-control" />
                 <span asp-validation-for="BikeRide.Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BikeRide.ParticipantId" class="control-label"></label>
-                <input asp-for="BikeRide.ParticipantId" class="form-control" />
-                <span asp-validation-for="BikeRide.ParticipantId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="BikeRide.Distance" class="control-label"></label>
                 <input asp-for="BikeRide.Distance" class="form-control" />
                 <span asp-validation-for="BikeRide.Distance" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
 <div>
     <a asp-page="./Index">Back to List</a>
 </div>

@@ -13,11 +13,13 @@ namespace BikeToWork.Pages.BikeRides
         {
             _context = context;
         }
-
-      public BikeRide BikeRide { get; set; }
+        public BikeRide BikeRide { get; set; }
+        public IList<Data.Models.Participant> ListOfParticipants { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            ListOfParticipants = _context.Participants.ToList();
+
             if (id == null || _context.BikeRides == null)
             {
                 return NotFound();

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BikeToWork.Data;
 using BikeToWork.Data.Models;
 
 namespace BikeToWork.Pages.Participant
@@ -20,11 +14,14 @@ namespace BikeToWork.Pages.Participant
             _context = context;
         }
 
+        public IList<BikeClassEnum> ListOfBikeClasses { get; set; }
         [BindProperty]
         public Data.Models.Participant Participant { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            ListOfBikeClasses = (IList<BikeClassEnum>)Enum.GetValues(typeof(BikeClassEnum));
+
             if (id == null || _context.Participants == null)
             {
                 return NotFound();
@@ -43,6 +40,8 @@ namespace BikeToWork.Pages.Participant
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            ListOfBikeClasses = (IList<BikeClassEnum>)Enum.GetValues(typeof(BikeClassEnum));
+
             if (!ModelState.IsValid)
             {
                 return Page();

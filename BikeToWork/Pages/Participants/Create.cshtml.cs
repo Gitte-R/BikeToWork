@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using BikeToWork.Data;
 using BikeToWork.Data.Models;
 
 namespace BikeToWork.Pages.Participant
@@ -21,7 +15,6 @@ namespace BikeToWork.Pages.Participant
 
         public IList<BikeClassEnum> ListOfBikeClasses { get; set; }
 
-
         public IActionResult OnGet()
         {
             ListOfBikeClasses = (IList<BikeClassEnum>)Enum.GetValues(typeof(BikeClassEnum));
@@ -31,7 +24,6 @@ namespace BikeToWork.Pages.Participant
 
         [BindProperty]
         public Data.Models.Participant Participant { get; set; }
-        
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -50,5 +42,3 @@ namespace BikeToWork.Pages.Participant
         }
     }
 }
-
-//få dropdown til at blive på valgt item 

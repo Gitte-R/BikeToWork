@@ -17,5 +17,3 @@ namespace BikeToWork.Data.Models
         public IList<BikeRide>? AllBikeRides { get; set; }
     }
 }
-
-//Hvis id er unit (0 til 4 mia) så giver det problemer med funktionen i onpostAsync med funktionen: ParticipantExists(Participant.id) fordi den er lavet på en int. I så fald skal den convertTiInt

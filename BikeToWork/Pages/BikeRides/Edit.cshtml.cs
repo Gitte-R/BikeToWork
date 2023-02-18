@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using BikeToWork.Data;
 using BikeToWork.Data.Models;
 
 namespace BikeToWork.Pages.BikeRides
@@ -20,11 +14,15 @@ namespace BikeToWork.Pages.BikeRides
             _context = context;
         }
 
+        public IList<Data.Models.Participant> ListOfParticipants { get; set; }
+
         [BindProperty]
         public BikeRide BikeRide { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            ListOfParticipants = _context.Participants.ToList();
+
             if (id == null || _context.BikeRides == null)
             {
                 return NotFound();
@@ -43,6 +41,8 @@ namespace BikeToWork.Pages.BikeRides
         // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
+            ListOfParticipants = _context.Participants.ToList();
+
             if (!ModelState.IsValid)
             {
                 return Page();

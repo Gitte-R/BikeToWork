@@ -23,8 +23,6 @@ namespace BikeToWork.Pages.Participant
         public IList<ViewParticipant> ListOfViewParticipant { get; set; }
         public IQueryable<ViewParticipant> ViewParticipantQueryable { get; set; }
 
-
-
         public void ConvertToViewParticipant()
         {
             ListOfViewParticipant = new List<ViewParticipant>();
@@ -94,7 +92,7 @@ namespace BikeToWork.Pages.Participant
 
             ConvertToViewParticipant();
 
-            #region Filtering
+            #region Filter
             if (!String.IsNullOrEmpty(filter))
             {
                 ListOfViewParticipant = ListOfViewParticipant.Where(s => s.BikeClass.ToString().Equals(filter)).ToList();
